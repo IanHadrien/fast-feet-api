@@ -19,12 +19,68 @@ enum UserRole {
 }
 
 model User {
-  id              String   @id @default(uuid())
+  id              String  @id @default(uuid())
   name            String
-  cpf             String   @unique
+  cpf             String  @unique
   password        String
-  currentLocation String
-  role            UserRole @default(DELIVERYMAN)
+  currentLocation String? @map("current_location")
+  role            String
+
+  Order Order[]
 
   @@map("users")
+}
+
+model Recipient {
+  id      String @id @default(uuid())
+  name    String
+  address String
+  phone   String
+  email   String
+
+  Order        Order[]
+  Notification Notification[]
+
+  @@map("recipients")
+}
+
+model Order {
+  id           String    @id @default(uuid())
+  status       String
+  // deliveryPhoto
+  createdAt    DateTime  @default(now()) @map("created_at")
+  deliveryDate DateTime? @map("delivery_date")
+  returnDate   DateTime? @map("return_date")
+  userId       String    @map("user_id")
+  recipientId  String    @map("recipient_id")
+
+  user         User           @relation(fields: [userId], references: [id])
+  recipient    Recipient      @relation(fields: [recipientId], references: [id])
+  Attachment   Attachment[]
+  Notification Notification[]
+
+  @@map("orders")
+}
+
+model Attachment {
+  id      String @id @default(uuid())
+  url     String
+  orderId String @map("order_id")
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@map("attachments")
+}
+
+model Notification {
+  id           String   @id @default(uuid())
+  status       String
+  shippingDate DateTime @map("shipping_date")
+  recipientId  String   @map("recipient_id")
+  orderId      String   @map("order_id")
+
+  recipient Recipient @relation(fields: [recipientId], references: [id])
+  order     Order     @relation(fields: [orderId], references: [id])
+
+  @@map("notifications")
 }
