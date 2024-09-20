@@ -7,6 +7,16 @@ import { GetUserController } from "./controllers/ger-user.controller";
 import { GetUserUseCase } from "@/domain/fastfeet/application/use-cases/get-user";
 import { EditUserController } from "./controllers/edit-user.controller";
 import { EditUserUseCase } from "@/domain/fastfeet/application/use-cases/edit-user";
+import { DeleteUserController } from "./controllers/delete-user.controller";
+import { DeleteUserUseCase } from "@/domain/fastfeet/application/use-cases/delete-user";
+import { CreateRecipientController } from "./controllers/create-recipient.controller";
+import { CreateRecipientUseCase } from "@/domain/fastfeet/application/use-cases/create-recipient";
+import { EditRecipientController } from "./controllers/edit-recipient.controller";
+import { EditRecipientUseCase } from "@/domain/fastfeet/application/use-cases/edit-recipient";
+import { GetRecipientController } from "./controllers/ger-recipient.controller";
+import { GetRecipientUseCase } from "@/domain/fastfeet/application/use-cases/get-recipient";
+import { DeleteRecipientController } from "./controllers/delete-recipient.controller";
+import { DeleteRecipientUseCase } from "@/domain/fastfeet/application/use-cases/delete-recipient";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -14,11 +24,23 @@ import { EditUserUseCase } from "@/domain/fastfeet/application/use-cases/edit-us
     CreateUserController,
     GetUserController,
     EditUserController,
+    DeleteUserController,
+    
+    CreateRecipientController,
+    GetRecipientController,
+    EditRecipientController,
+    DeleteRecipientController,
   ],
   providers: [
     CreateUserUseCase,
     GetUserUseCase,
-    EditUserUseCase
+    EditUserUseCase,
+    DeleteUserUseCase,
+
+    CreateRecipientUseCase,
+    GetRecipientUseCase,
+    EditRecipientUseCase,
+    DeleteRecipientUseCase,
   ]
 })
 export class HttpModule {}
