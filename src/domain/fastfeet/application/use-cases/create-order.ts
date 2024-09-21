@@ -50,12 +50,13 @@ export class CreateOrderUseCase {
     }
 
     const order = Order.create({
+      orderId: new UniqueEntityID().toString(),
       status,
       createdAt: new Date(),
       deliveryDate,
       returnDate,
-      recipientId: new UniqueEntityID(recipientId),
-      userId: new UniqueEntityID(userId),
+      recipientId: new UniqueEntityID(recipientId).toString(),
+      userId: new UniqueEntityID(userId).toString(),
     })
 
     await this.orderRepository.create(order)

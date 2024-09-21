@@ -6,8 +6,8 @@ export class OrderPresenter {
       id: order.id.toString(),
       status: order.status,
       createdAt: order.createdAt,
-      deliveryDate: order.deliveryDate,
-      returnDate: order.returnDate,
+      deliveryDate: order.deliveryDate ?? null,
+      returnDate: order.returnDate ?? null,
       userId: order.userId.toString(),
       recipientId: order.recipientId.toString(),
     }

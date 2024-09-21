@@ -1,16 +1,21 @@
 import { AggregateRoot } from "src/core/entities/aggregate-root"
 import { UniqueEntityID } from "src/core/entities/unique-entity-id"
 
-export interface UserProps {
+export interface OrderProps {
+  orderId: string
   status: string
-  userId: UniqueEntityID
-  recipientId: UniqueEntityID
+  userId: string
+  recipientId: string
   createdAt: Date
   deliveryDate?: Date | null
   returnDate?: Date | null
 }
 
-export class Order extends AggregateRoot<UserProps> {
+export class Order extends AggregateRoot<OrderProps> {
+  get orderId() {
+    return this.props.orderId
+  }
+
   get status() {
     return this.props.status
   }
@@ -23,7 +28,7 @@ export class Order extends AggregateRoot<UserProps> {
     return this.props.userId
   }
 
-  set userId(userId: UniqueEntityID) {
+  set userId(userId: string) {
     this.props.userId = userId
   }
 
@@ -31,7 +36,7 @@ export class Order extends AggregateRoot<UserProps> {
     return this.props.recipientId
   }
 
-  set recipientId(recipientId: UniqueEntityID) {
+  set recipientId(recipientId: string) {
     this.props.recipientId = recipientId
   }
 
@@ -56,7 +61,7 @@ export class Order extends AggregateRoot<UserProps> {
   }
 
   static create(
-    props: UserProps,
+    props: OrderProps,
     id?: UniqueEntityID,
   ) {
     const order = new Order(

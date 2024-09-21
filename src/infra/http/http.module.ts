@@ -27,6 +27,18 @@ import { EditOrderController } from "./controllers/edit-order.controller";
 import { EditOrderUseCase } from "@/domain/fastfeet/application/use-cases/edit-order";
 import { DeleteOrderController } from "./controllers/delete-order.controller";
 import { DeleteOrderUseCase } from "@/domain/fastfeet/application/use-cases/delete-order";
+import { MarkWithWaitingOrderController } from "./controllers/mark-with-waiting-order.controller";
+import { MarkWithWaitingOrderUseCase } from "@/domain/fastfeet/application/use-cases/mark-with-waiting-order";
+import { MarkWithDeliverOrderController } from "./controllers/mark-with-deliver-order.controller";
+import { MarkWithDeliverOrderUseCase } from "@/domain/fastfeet/application/use-cases/mark-with-deliver-order";
+import { MarkWithPickUpOrderController } from "./controllers/mark-with-pickup-order.controller";
+import { MarkWithReturnedOrderController } from "./controllers/mark-with-returned-order.controller";
+import { MarkWithPickUpOrderUseCase } from "@/domain/fastfeet/application/use-cases/mark-with-pickup-order";
+import { MarkWithReturnedOrderUseCase } from "@/domain/fastfeet/application/use-cases/mark-with-returned-order";
+import { GetOrderPendingUseCase } from "@/domain/fastfeet/application/use-cases/get-order-pending";
+import { GetOrderPendingController } from "./controllers/get-order-pending.controller";
+import { GetOrderCompletedController } from "./controllers/get-order-completed.controller";
+import { GetOrderCompletedUseCase } from "@/domain/fastfeet/application/use-cases/get-order-completed";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -46,6 +58,13 @@ import { DeleteOrderUseCase } from "@/domain/fastfeet/application/use-cases/dele
     GetOrderController,
     EditOrderController,
     DeleteOrderController,
+
+    MarkWithWaitingOrderController,
+    MarkWithDeliverOrderController,
+    MarkWithPickUpOrderController,
+    MarkWithReturnedOrderController,
+    GetOrderPendingController,
+    GetOrderCompletedController,
   ],
   providers: [
     AuthenticationUserUseCase,
@@ -63,6 +82,13 @@ import { DeleteOrderUseCase } from "@/domain/fastfeet/application/use-cases/dele
     GetOrderUseCase,
     EditOrderUseCase,
     DeleteOrderUseCase,
+    
+    MarkWithWaitingOrderUseCase,
+    MarkWithDeliverOrderUseCase,
+    MarkWithPickUpOrderUseCase,
+    MarkWithReturnedOrderUseCase,
+    GetOrderPendingUseCase,
+    GetOrderCompletedUseCase,
   ]
 })
 export class HttpModule {}

@@ -10,7 +10,6 @@ export class PrismaOrderRepository implements OrderRepository {
   constructor(
     private prisma: PrismaService
   ) {}
-
   async findById(id: string): Promise<Order | null> {
     const order = await this.prisma.order.findUnique({
       where: { id },
@@ -19,7 +18,6 @@ export class PrismaOrderRepository implements OrderRepository {
     if (!order) {
       return null
     }
-
 
     return PrismaOrderMapper.toDomain(order)
   }
@@ -36,6 +34,46 @@ export class PrismaOrderRepository implements OrderRepository {
     })
 
     return orders.map(PrismaOrderMapper.toDomain)
+  }
+
+  async findManyPendingByUserId(userId: string): Promise<Order[]> {
+    const orders = await this.prisma.order.findMany({
+      where: {
+        userId: userId,
+        status: {
+          notIn: ['Entregue', 'Devolvido']
+        }
+      },
+      orderBy: {
+        createdAt: 'asc'
+      },
+      include: {
+        user: true,
+        recipient: true
+      }
+    })
+
+    return orders.map(order => PrismaOrderMapper.toDomain(order))
+  }
+
+  async findManyCompletedByUserId(userId: string): Promise<Order[]> {
+    const orders = await this.prisma.order.findMany({
+      where: {
+        userId: userId,
+        status: {
+          in: ['Entregue', 'Devolvido']
+        }
+      },
+      orderBy: {
+        createdAt: 'asc'
+      },
+      include: {
+        user: true,
+        recipient: true
+      }
+    })
+
+    return orders.map(order => PrismaOrderMapper.toDomain(order))
   }
 
   async create(order: Order): Promise<void> {
@@ -65,6 +103,62 @@ export class PrismaOrderRepository implements OrderRepository {
     await this.prisma.order.delete({
       where: {
         id: data.id
+      }
+    })
+  }
+
+  async markWithWaiting(id: string): Promise<void> {
+    const data = await this.prisma.order.findUnique({
+      where: { id },
+    })
+
+    await this.prisma.order.update({
+      where: { id },
+      data: {
+        ...data,
+        status: 'Aguardando'
+      }
+    })
+  }
+
+  async markWithPickUp(id: string): Promise<void> {
+    const data = await this.prisma.order.findUnique({
+      where: { id },
+    })
+
+    await this.prisma.order.update({
+      where: { id },
+      data: {
+        ...data,
+        status: 'Retirada'
+      }
+    })
+  }
+
+  async markWithDeliver(id: string): Promise<void> {
+    const data = await this.prisma.order.findUnique({
+      where: { id },
+    })
+
+    await this.prisma.order.update({
+      where: { id },
+      data: {
+        ...data,
+        status: 'Entregue'
+      }
+    })
+  }
+
+  async markWithReturned(id: string): Promise<void> {
+    const data = await this.prisma.order.findUnique({
+      where: { id },
+    })
+
+    await this.prisma.order.update({
+      where: { id },
+      data: {
+        ...data,
+        status: 'Devolvida'
       }
     })
   }

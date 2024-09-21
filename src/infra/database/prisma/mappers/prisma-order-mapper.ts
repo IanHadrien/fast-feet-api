@@ -6,12 +6,13 @@ export class PrismaOrderMapper {
   static toDomain(raw: PrismaOrder): Order {
     return Order.create(
       {
+        orderId: raw.id.toString(),
         status: raw.status,
         createdAt: raw.createdAt,
         deliveryDate: raw.deliveryDate ?? null,
         returnDate: raw.returnDate ?? null,
-        userId: new UniqueEntityID(raw.id),
-        recipientId: new UniqueEntityID(raw.recipientId),
+        userId: new UniqueEntityID(raw.userId).toString(),
+        recipientId: new UniqueEntityID(raw.recipientId).toString(),
       },
       new UniqueEntityID(raw.id),
     )

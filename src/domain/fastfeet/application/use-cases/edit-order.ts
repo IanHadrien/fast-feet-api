@@ -60,8 +60,8 @@ export class EditOrderUseCase {
     }
 
     order.status = status
-    order.userId = new UniqueEntityID(userId)
-    order.recipientId = new UniqueEntityID(recipientId)
+    order.userId = new UniqueEntityID(userId).toString()
+    order.recipientId = new UniqueEntityID(recipientId).toString()
     order.deliveryDate = deliveryDate
     order.returnDate = returnDate
 
