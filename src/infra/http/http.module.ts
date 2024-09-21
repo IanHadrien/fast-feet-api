@@ -17,10 +17,13 @@ import { GetRecipientController } from "./controllers/ger-recipient.controller";
 import { GetRecipientUseCase } from "@/domain/fastfeet/application/use-cases/get-recipient";
 import { DeleteRecipientController } from "./controllers/delete-recipient.controller";
 import { DeleteRecipientUseCase } from "@/domain/fastfeet/application/use-cases/delete-recipient";
+import { AuthenticationUserController } from "./controllers/authentication-user.controller";
+import { AuthenticationUserUseCase } from "@/domain/fastfeet/application/use-cases/authentication-user";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
   controllers: [
+    AuthenticationUserController,
     CreateUserController,
     GetUserController,
     EditUserController,
@@ -32,6 +35,7 @@ import { DeleteRecipientUseCase } from "@/domain/fastfeet/application/use-cases/
     DeleteRecipientController,
   ],
   providers: [
+    AuthenticationUserUseCase,
     CreateUserUseCase,
     GetUserUseCase,
     EditUserUseCase,
