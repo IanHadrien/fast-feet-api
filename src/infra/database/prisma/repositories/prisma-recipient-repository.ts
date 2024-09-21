@@ -1,4 +1,4 @@
-import { Recipient } from "@/domain/fastfeet/enterprise/recipient";
+import { Recipient } from "@/domain/fastfeet/enterprise/entities/recipient";
 import { PrismaService } from "../prisma.service";
 import { DomainEvents } from "@/core/events/domain-events";
 import { Injectable } from "@nestjs/common";

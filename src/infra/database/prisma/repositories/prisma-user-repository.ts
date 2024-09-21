@@ -1,5 +1,5 @@
 import { UserRepository } from "@/domain/fastfeet/application/repositories/user-repository";
-import { User } from "@/domain/fastfeet/enterprise/user";
+import { User } from "@/domain/fastfeet/enterprise/entities/user";
 import { PrismaService } from "../prisma.service";
 import { PrismaUserMapper } from "../mappers/prisma-user-mapper";
 import { DomainEvents } from "@/core/events/domain-events";

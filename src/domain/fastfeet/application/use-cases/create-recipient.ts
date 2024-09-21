@@ -2,7 +2,7 @@ import { Either, left, right } from "src/core/either"
 import { UniqueEntityID } from "src/core/entities/unique-entity-id"
 import { Injectable } from "@nestjs/common"
 import { UserAlreadyExistsError } from "./errors/user-already-exists-error"
-import { Recipient } from "../../enterprise/recipient"
+import { Recipient } from "../../enterprise/entities/recipient"
 import { RecipientRepository } from "../repositories/recipient-repository"
 
 interface CreateRecipientUseCaseRequest {

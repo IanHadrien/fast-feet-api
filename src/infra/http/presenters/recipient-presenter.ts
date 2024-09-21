@@ -1,4 +1,4 @@
-import { Recipient } from "@/domain/fastfeet/enterprise/recipient";
+import { Recipient } from "@/domain/fastfeet/enterprise/entities/recipient";
 
 export class RecipientPresenter {
   static toHTTP(recipient: Recipient) {

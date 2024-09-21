@@ -1,6 +1,6 @@
 import { Either, right } from "src/core/either"
 import { Injectable } from "@nestjs/common"
-import { Recipient } from "../../enterprise/recipient"
+import { Recipient } from "../../enterprise/entities/recipient"
 import { RecipientRepository } from "../repositories/recipient-repository"
 
 type GetRecipientUseCaseResponse = Either<

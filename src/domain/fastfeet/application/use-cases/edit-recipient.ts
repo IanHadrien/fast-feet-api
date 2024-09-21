@@ -2,7 +2,7 @@ import { Either, left, right } from "src/core/either"
 import { Injectable } from "@nestjs/common"
 import { ResourceNotFoundError } from "@/core/errors/errors/resource-not-found-error"
 import { NotAllowedError } from "@/core/errors/errors/not-allowed-error"
-import { Recipient } from "../../enterprise/recipient"
+import { Recipient } from "../../enterprise/entities/recipient"
 import { RecipientRepository } from "../repositories/recipient-repository"
 
 interface EditRecipientUseCaseRequest {

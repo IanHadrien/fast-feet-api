@@ -1,5 +1,5 @@
 import { Either, right } from "src/core/either"
-import { User } from "../../enterprise/user"
+import { User } from "../../enterprise/entities/user"
 import { UserRepository } from "../repositories/user-repository"
 import { Injectable } from "@nestjs/common"
 

@@ -1,6 +1,6 @@
 import { Prisma, Recipient as PrismaRecipient } from '@prisma/client'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { Recipient } from '@/domain/fastfeet/enterprise/recipient'
+import { Recipient } from '@/domain/fastfeet/enterprise/entities/recipient'
 
 export class PrismaRecipientMapper {
   static toDomain(raw: PrismaRecipient): Recipient {

@@ -19,6 +19,14 @@ import { DeleteRecipientController } from "./controllers/delete-recipient.contro
 import { DeleteRecipientUseCase } from "@/domain/fastfeet/application/use-cases/delete-recipient";
 import { AuthenticationUserController } from "./controllers/authentication-user.controller";
 import { AuthenticationUserUseCase } from "@/domain/fastfeet/application/use-cases/authentication-user";
+import { CreateOrderController } from "./controllers/create-order.controller";
+import { CreateOrderUseCase } from "@/domain/fastfeet/application/use-cases/create-order";
+import { GetOrderController } from "./controllers/ger-order.controller";
+import { GetOrderUseCase } from "@/domain/fastfeet/application/use-cases/get-order";
+import { EditOrderController } from "./controllers/edit-order.controller";
+import { EditOrderUseCase } from "@/domain/fastfeet/application/use-cases/edit-order";
+import { DeleteOrderController } from "./controllers/delete-order.controller";
+import { DeleteOrderUseCase } from "@/domain/fastfeet/application/use-cases/delete-order";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -33,6 +41,11 @@ import { AuthenticationUserUseCase } from "@/domain/fastfeet/application/use-cas
     GetRecipientController,
     EditRecipientController,
     DeleteRecipientController,
+
+    CreateOrderController,
+    GetOrderController,
+    EditOrderController,
+    DeleteOrderController,
   ],
   providers: [
     AuthenticationUserUseCase,
@@ -45,6 +58,11 @@ import { AuthenticationUserUseCase } from "@/domain/fastfeet/application/use-cas
     GetRecipientUseCase,
     EditRecipientUseCase,
     DeleteRecipientUseCase,
+
+    CreateOrderUseCase,
+    GetOrderUseCase,
+    EditOrderUseCase,
+    DeleteOrderUseCase,
   ]
 })
 export class HttpModule {}
