@@ -19,6 +19,7 @@ export class GetOrderCompletedController {
     const orders = result.value.orders.map(order => ({
       id: order.id.toString(),            
       status: order.status,
+      name: order.name,
       createdAt: order.createdAt,
       deliveryDate: order.deliveryDate,      
       returnDate: order.returnDate,          

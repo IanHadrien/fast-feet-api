@@ -9,6 +9,7 @@ import { RecipientRepository } from "../repositories/recipient-repository"
 
 interface CreateOrderUseCaseRequest {
   status: string
+  name?: string
   deliveryDate?: Date
   returnDate?: Date
   userId: string
@@ -32,6 +33,7 @@ export class CreateOrderUseCase {
 
   async create({
     status,
+    name,
     deliveryDate,
     returnDate,
     recipientId,
@@ -52,6 +54,7 @@ export class CreateOrderUseCase {
     const order = Order.create({
       orderId: new UniqueEntityID().toString(),
       status,
+      name,
       createdAt: new Date(),
       deliveryDate,
       returnDate,

@@ -4,6 +4,7 @@ import { BadRequestException, Body, Controller, HttpCode, Post } from "@nestjs/c
 import { CreateOrderUseCase } from "@/domain/fastfeet/application/use-cases/create-order";
 
 const createOrderBodySchema = z.object({
+  name: z.string(),
   status: z.string(),
   userId: z.string().uuid(),
   recipientId: z.string().uuid(),
@@ -22,12 +23,13 @@ export class CreateOrderController {
   async handle(
     @Body(bodyValidationPipe) body: CreateOrderBodySchema,
   ) {
-    const { status, recipientId, userId } = body
+    const { status, recipientId, userId, name } = body
 
     const result = await this.createOrderUseCase.create({
       status,
       recipientId,
       userId,
+      name
     })
 
     if (result.isRight()) {

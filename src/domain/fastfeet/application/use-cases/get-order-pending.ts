@@ -8,6 +8,7 @@ type GetOrderPendingUseCaseResponse = Either<
     orders: {
       id: string;
       status: string;
+      name: string | null;
       createdAt: Date;
       deliveryDate: Date | null;
       returnDate: Date | null;
@@ -29,6 +30,7 @@ export class GetOrderPendingUseCase {
     const formattedOrders = orders.map(order => ({
       id: order.id.toString(),
       status: order.status,
+      name: order.name,
       createdAt: order.createdAt,
       deliveryDate: order.deliveryDate,
       returnDate: order.returnDate,

@@ -10,16 +10,20 @@ export class PrismaOrderRepository implements OrderRepository {
   constructor(
     private prisma: PrismaService
   ) {}
-  async findById(id: string): Promise<Order | null> {
+  async findById(id: string): Promise<any | null> {
     const order = await this.prisma.order.findUnique({
       where: { id },
+      include: {
+        recipient: true,
+        user: true,
+      }
     })
 
     if (!order) {
       return null
     }
 
-    return PrismaOrderMapper.toDomain(order)
+    return order
   }
 
   async findMany(): Promise<Order[]> {
@@ -130,7 +134,8 @@ export class PrismaOrderRepository implements OrderRepository {
       where: { id },
       data: {
         ...data,
-        status: 'Retirada'
+        status: 'Retirada',
+        returnDate: new Date()
       }
     })
   }
@@ -144,7 +149,8 @@ export class PrismaOrderRepository implements OrderRepository {
       where: { id },
       data: {
         ...data,
-        status: 'Entregue'
+        status: 'Entregue',
+        deliveryDate: new Date()
       }
     })
   }

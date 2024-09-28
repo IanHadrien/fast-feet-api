@@ -4,6 +4,7 @@ import { UniqueEntityID } from "src/core/entities/unique-entity-id"
 export interface OrderProps {
   orderId: string
   status: string
+  name?: string
   userId: string
   recipientId: string
   createdAt: Date
@@ -22,6 +23,14 @@ export class Order extends AggregateRoot<OrderProps> {
 
   set status(status: string) {
     this.props.status = status
+  }
+
+  get name(): string | null {
+    return this.props.name ?? null
+  }
+
+  set name(name: string | undefined) {
+    this.props.name = name
   }
 
   get userId() {

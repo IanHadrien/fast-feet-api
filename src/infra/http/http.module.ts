@@ -39,6 +39,8 @@ import { GetOrderPendingUseCase } from "@/domain/fastfeet/application/use-cases/
 import { GetOrderPendingController } from "./controllers/get-order-pending.controller";
 import { GetOrderCompletedController } from "./controllers/get-order-completed.controller";
 import { GetOrderCompletedUseCase } from "@/domain/fastfeet/application/use-cases/get-order-completed";
+import { GetOrderUniqueController } from "./controllers/ger-order-unique.controller";
+import { GetOrderUniqueUseCase } from "@/domain/fastfeet/application/use-cases/get-order-unique";
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -65,6 +67,7 @@ import { GetOrderCompletedUseCase } from "@/domain/fastfeet/application/use-case
     MarkWithReturnedOrderController,
     GetOrderPendingController,
     GetOrderCompletedController,
+    GetOrderUniqueController,
   ],
   providers: [
     AuthenticationUserUseCase,
@@ -89,6 +92,7 @@ import { GetOrderCompletedUseCase } from "@/domain/fastfeet/application/use-case
     MarkWithReturnedOrderUseCase,
     GetOrderPendingUseCase,
     GetOrderCompletedUseCase,
+    GetOrderUniqueUseCase,
   ]
 })
 export class HttpModule {}

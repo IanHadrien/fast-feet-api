@@ -8,6 +8,7 @@ export class PrismaOrderMapper {
       {
         orderId: raw.id.toString(),
         status: raw.status,
+        name: raw.name ?? undefined,
         createdAt: raw.createdAt,
         deliveryDate: raw.deliveryDate ?? null,
         returnDate: raw.returnDate ?? null,
@@ -22,6 +23,7 @@ export class PrismaOrderMapper {
     return {
       id: order.id.toString(), // Certifique-se de que o ID está sendo convertido para string
       status: order.status,
+      name: order.name,
       createdAt: order.createdAt,
       deliveryDate: order.deliveryDate,
       returnDate: order.returnDate,

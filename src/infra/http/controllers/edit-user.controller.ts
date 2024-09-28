@@ -28,8 +28,6 @@ export class EditUserController {
   ) {
     const { cpf, currentLocation, name, password, role } = body
 
-    console.log("body: ", body)
-
     const result = await this.editUserUseCase.execute({
       id: userId,
       cpf,
@@ -38,8 +36,6 @@ export class EditUserController {
       password,
       role,
     })
-
-    console.log("Result: ", result)
 
     if (result.isRight()) {
       return { message: "Cadastro atualizado com sucesso" };

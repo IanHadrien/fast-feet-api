@@ -5,6 +5,7 @@ export class OrderPresenter {
     return {
       id: order.id.toString(),
       status: order.status,
+      name: order.name,
       createdAt: order.createdAt,
       deliveryDate: order.deliveryDate ?? null,
       returnDate: order.returnDate ?? null,
