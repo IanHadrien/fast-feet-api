@@ -46,6 +46,7 @@ model Recipient {
 
 model Order {
   id           String    @id @default(uuid())
+  name         String?
   status       String
   // deliveryPhoto
   createdAt    DateTime  @default(now()) @map("created_at")
